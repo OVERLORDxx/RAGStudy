@@ -53,8 +53,8 @@ Text chunk:
 """
             try:
                 if self.provider == "gemini":
-                    # Using v1 stable endpoint for maximum compatibility across Google Cloud projects
-                    url = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent"
+                    # Using v1beta endpoint with gemini-2.5-flash as gemini-1.5-flash is not available on this API tier
+                    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
                     headers = {
                         "Content-Type": "application/json",
                         "x-goog-api-key": self.api_key
