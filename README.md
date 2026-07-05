@@ -1,6 +1,16 @@
 # ◆ RAGStudy — Study Assistant & Question Paper Generator
 
+[![Live App](https://img.shields.io/badge/Live_App-Streamlit_Community_Cloud-FF4B4B?style=flat&logo=streamlit)](https://kuldeep-singh-ragstudy.streamlit.app/)
+
 A premium portfolio-grade application that combines **Retrieval-Augmented Generation (RAG)** with **Automatic Question Paper Generation**, featuring **Grounding Checks** and a **Retrieval Evaluation Dashboard**. Built 100% locally with a sleek, Zinc-styled card UI using Streamlit, FAISS, and PyTorch.
+
+---
+
+## 🏗️ System Architecture & Data Flow
+
+Below is the conceptual design showing the backend ingestion pipeline, local vector store database, LLM API routing client, and validation flow:
+
+![RAGStudy System Architecture & Data Flow](assets/ragstudy_architecture.png)
 
 ---
 
