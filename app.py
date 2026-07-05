@@ -405,6 +405,25 @@ with tab_upload:
                 metric_card("Total Chunks", len(chunks))
                 st.markdown("<div style='margin-top:10px;'></div>", unsafe_allow_html=True)
                 metric_card("Avg Chunks/Page", f"{len(chunks)/max(1, total_pages):.1f}")
+                
+            st.markdown("<div style='margin-top:15px;'></div>", unsafe_allow_html=True)
+            if st.button("🗑️ Clear Vector Database", use_container_width=True, type="secondary"):
+                # Delete files
+                index_path = os.path.join(VECTOR_DB_DIR, "index.faiss")
+                metadata_path = os.path.join(VECTOR_DB_DIR, "metadata.pkl")
+                for path in [index_path, metadata_path]:
+                    if os.path.exists(path):
+                        try:
+                            os.remove(path)
+                        except Exception:
+                            pass
+                # Reset state
+                st.session_state.vector_store = LocalVectorStore()
+                st.session_state.chat_history = []
+                st.session_state.generated_exam = None
+                st.session_state.eval_results = None
+                st.success("Vector database cleared successfully!")
+                st.rerun()
         else:
             st.info("No document has been ingested yet. Upload a PDF file to begin.")
 
