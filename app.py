@@ -312,7 +312,7 @@ with api_col2:
 with api_col3:
     # Vector store status indicator
     index_loaded = st.session_state.vector_store.index is not None
-    chunks_count = len(st.session_state.vector_store.chunks) if index_loaded else 0
+    chunks_count = len(st.session_state.vector_store.metadata) if index_loaded else 0
     status_label = "Connected & Active" if index_loaded else "No Index Loaded"
     status_class = "badge-green" if index_loaded else "badge-red"
     st.markdown(f"""
@@ -392,7 +392,7 @@ with tab_upload:
         # Document Stats Card
         st.markdown("<div class='zinc-card-title'>📊 Document Summary</div>", unsafe_allow_html=True)
         if index_loaded:
-            chunks = st.session_state.vector_store.chunks
+            chunks = st.session_state.vector_store.metadata
             doc_names = list(set([c["doc_name"] for c in chunks]))
             total_pages = max([c["page"] for c in chunks]) if chunks else 0
             
@@ -515,7 +515,7 @@ with tab_exam:
                     with st.spinner("Generating structured exam questions..."):
                         try:
                             # 1. Generate questions
-                            chunks = st.session_state.vector_store.chunks
+                            chunks = st.session_state.vector_store.metadata
                             q_generator = QuestionGenerator(api_key=api_key_input, provider=llm_provider)
                             generated_questions = q_generator.generate_questions(
                                 chunks, 
@@ -620,7 +620,7 @@ with tab_eval:
                 else:
                     with st.spinner("Generating synthetic evaluation set... (generating QA pairs from document)"):
                         try:
-                            chunks = st.session_state.vector_store.chunks
+                            chunks = st.session_state.vector_store.metadata
                             evaluator = RAGEvaluator(api_key=api_key_input, provider=llm_provider)
                             
                             eval_set = evaluator.generate_evaluation_set(chunks, num_eval_pairs=eval_size)
