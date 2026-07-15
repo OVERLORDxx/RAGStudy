@@ -10,7 +10,7 @@ A premium portfolio-grade application that combines **Retrieval-Augmented Genera
 
 Below is the conceptual design showing the backend ingestion pipeline, local vector store database, LLM API routing client, and validation flow:
 
-![RAGStudy System Architecture & Data Flow](assets/ragstudy_architecture.png)
+![RAGStudy System Architecture & Data Flow](assets/ragstudy_architecture_v2.png)
 
 ---
 
